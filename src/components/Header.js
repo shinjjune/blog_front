@@ -9,7 +9,7 @@ export default function Header() {
         <div className="row">
           <div className="col-lg-8 col-md-10 mx-auto">
             <div className="site-heading">
-              <h1>겨울을 걷는다</h1>
+              <h1>start</h1>
               <span className="subheading">kikikikkiiiiii</span>
             </div>
           </div>
