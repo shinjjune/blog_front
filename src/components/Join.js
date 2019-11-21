@@ -13,7 +13,6 @@ export default function Join() {
   const [company_location, setCompany_location] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [isIdChecked, setIsIdChecked] = useState("yet");
-  const [isPasswordSame, setIsPasswordSame] = useState(false);
   const [joinResult, setJoinResult] = useState(false);
 
   const checkdupId = async () => {
@@ -85,7 +84,7 @@ export default function Join() {
             className="form-control"
             placeholder="Password"
             id="password"
-            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+            // pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
             value={password}
             onChange={e => {
               setPassword(e.target.value);
