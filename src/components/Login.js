@@ -8,8 +8,8 @@ export default function Login({ setIsLoggedIn, setIsAdmin, history }) {
   const [loginState, setLoginState] = useState("init");
   const handleSubmit = async e => {
     e.preventDefault();
-    const { data } = await Axios.post(`${baseURL}/auth/login`, {
-      email: e.target.email.value,
+    const { data } = await Axios.post(`${baseURL}/stamp/login`, {
+      id: e.target.id.value,
       password: e.target.password.value
     });
     if (!data.result) {
@@ -33,22 +33,22 @@ export default function Login({ setIsLoggedIn, setIsAdmin, history }) {
           {loginState === "failed" && "이메일 혹은 비밀번호를 확인하세요"}
         </small>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
+          <label htmlFor="id">ID</label>
           <input
-            type="email"
+            type="id"
             className="form-control"
-            id="exampleInputEmail1"
-            name="email"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
+            id="id"
+            name="id"
+            // aria-describedby="emailHelp"
+            placeholder="Enter ID"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             className="form-control"
-            id="exampleInputPassword1"
+            id="password"
             name="password"
             placeholder="Password"
           />

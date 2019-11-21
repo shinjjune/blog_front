@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from "react";
-import homeBg from "../static/image/home-bg.jpg";
+import homeBg from "../static/image/wenger.jpg";
 
 export default function Header() {
   return (

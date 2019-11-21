@@ -82,7 +82,7 @@ export default function Nav({
                 </Link>
               )}
             </li>
-            {isAdmin && (
+            {
               <li
                 className="nav-item"
                 onClick={() => {
@@ -96,7 +96,7 @@ export default function Nav({
                   글 쓰기
                 </Link>
               </li>
-            )}
+            }
           </ul>
         </div>
       </div>

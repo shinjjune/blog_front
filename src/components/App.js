@@ -7,7 +7,7 @@ import Nav from "./Nav";
 import Header from "./Header";
 import Home from "./Home";
 import Footer from "./Footer";
-import Post from "./Post";
+import Advertise from "./Advertise";
 import Join from "./Join";
 import Write from "./Write";
 
@@ -26,7 +26,7 @@ export default function App() {
       <Header />
       <Route exact path="/" component={Home} />
       <Route path="/login" render={props => <Login {...props} {...auth} />} />
-      <Route path="/post/:id" component={Post} />
+      <Route path="/advertise/:id" component={Advertise} />
       <Route path="/join" component={Join} />
       <Route path="/write" component={Write} />
       <Footer />

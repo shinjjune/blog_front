@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 /* eslint-disable */
 import React, { useState } from "react";
 import axios from "axios";
@@ -6,36 +5,39 @@ import { Redirect } from "react-router-dom";
 import { baseURL } from "../common/config";
 
 export default function Join() {
-  const [email, setEmail] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-  const [isEmailChecked, setIsEmailChecked] = useState("yet");
+  const [name, setName] = useState("");
+  const [company_no, setCompany_no] = useState("");
+  const [company_name, setCompany_name] = useState("");
+  const [company_location, setCompany_location] = useState("");
+  const [phonenumber, setPhonenumber] = useState("");
+  const [isIdChecked, setIsIdChecked] = useState("yet");
   const [isPasswordSame, setIsPasswordSame] = useState(false);
   const [joinResult, setJoinResult] = useState(false);
 
-  const checkEmail = async () => {
-    const { data } = await axios.get(`${baseURL}/auth/email?email=${email}`);
-    setIsEmailChecked(data.result);
+  const checkdupId = async () => {
+    const { data } = await axios.get(`${baseURL}/stamp/user_check?id=${id}`);
+    setIsIdChecked(data.result);
+    console.log(data);
   };
 
   const handleSubmit = async e => {
+    //  중복체크 다시보자
     e.preventDefault();
-    if (!isEmailChecked || isEmailChecked === "yet") {
-      alert("Please Email Duplicate Check");
+    if (!isIdChecked || isIdChecked === "yet") {
+      alert("아이디중복체크해주세요");
       return;
     }
-    if (!isPasswordSame) {
-      alert("Please Password Check");
-      return;
-    }
-    if (!e.target.name.value || !email || !password) {
-      alert("All field is required");
-      return;
-    }
-    const { data } = await axios.post(`${baseURL}/auth/join`, {
-      name: e.target.name.value,
-      email,
-      password
+
+    const { data } = await axios.post(`${baseURL}/stamp/join`, {
+      id,
+      password,
+      name,
+      company_no,
+      company_name,
+      company_location,
+      phonenumber
     });
     if (data.result) {
       setJoinResult(true);
@@ -49,39 +51,31 @@ export default function Join() {
       {joinResult && <Redirect to="/login" />}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Alias</label>
+          <label>ID</label>
           <input
             type="text"
-            name="name"
             className="form-control"
-            placeholder="username"
-          />
-        </div>
-        <div className="form-group">
-          <label>Email Address</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Enter email"
-            value={email}
+            placeholder="enter id"
+            id="id"
+            value={id}
             onChange={e => {
-              setIsEmailChecked("yet");
-              setEmail(e.target.value);
+              setIsIdChecked("yet");
+              setId(e.target.value);
             }}
           />
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={checkEmail}
+            onClick={checkdupId}
           >
-            Email Duplicate Check
+            중복체크점요
           </button>
           <small>
-            {isEmailChecked === "yet"
-              ? "duplicate check"
-              : isEmailChecked
-              ? "Email Address Available"
-              : "Email Address Not Available"}
+            {isIdChecked === "yet"
+              ? "중복체크점요"
+              : isIdChecked
+              ? "아이디 사용가능"
+              : "중복입니다."}
           </small>
         </div>
         <div className="form-group">
@@ -90,30 +84,83 @@ export default function Join() {
             type="password"
             className="form-control"
             placeholder="Password"
+            id="password"
+            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
             value={password}
             onChange={e => {
               setPassword(e.target.value);
-              setIsPasswordSame(e.target.value === password2);
+            }}
+          />
+          <small>비밀번호는 숫자, 특수문자, 영어대소문자 하나씩!!</small>
+        </div>
+        <div className="form-group">
+          <label>Name</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="이름을 써주세요"
+            id="name"
+            value={name}
+            onChange={e => {
+              setName(e.target.value);
             }}
           />
         </div>
         <div className="form-group">
-          <label>Password Check</label>
+          <label>company_no</label>
           <input
-            type="password"
+            type="text"
             className="form-control"
-            placeholder="Password Check"
-            value={password2}
+            placeholder="회사등록번호"
+            id="company_no"
+            value={company_no}
             onChange={e => {
-              setPassword2(e.target.value);
-              setIsPasswordSame(e.target.value === password);
+              setCompany_no(e.target.value);
             }}
           />
         </div>
-        <small>{isPasswordSame ? "Password Same" : "Password Not Same"}</small>
+        <div className="form-group">
+          <label>company_name</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="회사명"
+            id="company_name"
+            value={company_name}
+            onChange={e => {
+              setCompany_name(e.target.value);
+            }}
+          />
+        </div>
+        <div className="form-group">
+          <label>company_location</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="회사위치"
+            id="company_location"
+            value={company_location}
+            onChange={e => {
+              setCompany_location(e.target.value);
+            }}
+          />
+        </div>
+        <div className="form-group">
+          <label>phonenumber</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="연락처"
+            id="phonenumber"
+            value={phonenumber}
+            onChange={e => {
+              setPhonenumber(e.target.value);
+            }}
+          />
+        </div>
 
         <button type="submit" className="btn btn-primary">
-          Submit
+          등록
         </button>
       </form>
     </>
