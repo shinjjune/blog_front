@@ -68,7 +68,7 @@ export default function Main({ advertises }) {
             </colgroup>
             <thead>
               <tr>
-                <th>Title</th>
+                <th width="440">Title</th>
                 <th>content</th>
                 <th>survey1</th>
                 <th>Views</th>
@@ -77,11 +77,11 @@ export default function Main({ advertises }) {
             <tbody>
               {advertises &&
                 advertises.map(advertise => (
-                  <tr>
-                    <td>
+                  <tr onclick>
+                    <td width="440">
                       <h2 className="advertise-title">{advertise.title}</h2>
                     </td>
-                    <td>
+                    <td width="60">
                       <p className="advertise-content">{advertise.content}</p>
                     </td>
                     <td>
