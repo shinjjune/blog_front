@@ -10,8 +10,10 @@ export default function Login({ setIsLoggedIn, setIsAdmin, history }) {
     e.preventDefault();
     const { data } = await Axios.post(`${baseURL}/stamp/login`, {
       id: e.target.id.value,
-      password: e.target.password.value
+      password: e.target.password.value,
+      name: e.target.name.value
     });
+    console.log(data);
     if (!data.result) {
       setLoginState("failed");
     } else {

@@ -33,7 +33,7 @@ export default function Write({ history }) {
   // };
 
   const submit = async () => {
-    const { data } = await authAxios.post(`${baseURL}/advertise/mission`, {
+    const { data } = await axios.post(`${baseURL}/advertise/mission`, {
       title,
       content,
       survey1
@@ -52,7 +52,7 @@ export default function Write({ history }) {
       <button type="button" className="btn btn-success" onClick={addTag}>
         태그 추가
       </button> */}
-      <div>
+      {/* <div>
         {tags.map(({ name }, i) => (
           <button
             type="button"
@@ -62,7 +62,7 @@ export default function Write({ history }) {
             {name}
           </button>
         ))}
-      </div>
+      </div> */}
       <div className="write">
         <div className="write-vertical">
           <label>제목</label>
@@ -85,9 +85,7 @@ export default function Write({ history }) {
             제출
           </button>
         </div>
-        <div>
-          <ReactMarkdown source={content} />
-        </div>
+        <div>{/* <ReactMarkdown source={content} /> */}</div>
       </div>
     </>
   );
