@@ -11,7 +11,7 @@ export default function Write({ history }) {
   const [tags, setTags] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [survey1, setSurvey1] = useState("");
+  const [survey, setSurvey] = useState("");
 
   // const addTag = async () => {
   //   const res = await axios.get(`${baseURL}/api/tag/${tag}`);
@@ -36,7 +36,7 @@ export default function Write({ history }) {
     const { data } = await axios.post(`${baseURL}/advertise/mission`, {
       title,
       content,
-      survey1
+      survey
       // tags: tags.map(t => t._id)
     });
     if (data.result) history.push("/");
@@ -78,8 +78,8 @@ export default function Write({ history }) {
           />
           <label>설문1</label>
           <TextareaAutosize
-            value={survey1}
-            onChange={e => setSurvey1(e.target.value)}
+            value={survey}
+            onChange={e => setSurvey(e.target.value)}
           />
           <button type="button" className="btn btn-primary" onClick={submit}>
             제출

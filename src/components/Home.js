@@ -15,31 +15,19 @@ export default function Home() {
     const { data } = await axios.get(url);
     setAdvertises(data.advertises);
   };
-  // const getPostsByTag = async tag_id => {
-  //   const url = `${baseURL}/api/post?tag=${tag_id}`;
-  //   const { data } = await axios.get(url);
-  //   setPosts(data.posts);
-  // };
   const getNextPage = async () => {
     await getAdvertises(page + 1);
     setPage(page + 1);
   };
 
-  // const getTags = async () => {
-  //   const url = `${baseURL}/api/tag`;
-  //   const { data } = await axios.get(url);
-  //   setTags(data.tags);
-  // };
   const getAll = async () => {
     await getAdvertises();
-    // await getTags();
   };
   useEffect(() => {
     getAll();
   }, []);
   return (
     <>
-      {/* <TagList tags={tags} getPostsByTag={getPostsByTag} /> */}
       <Main advertises={advertises} getNextPage={getNextPage} />
     </>
   );
