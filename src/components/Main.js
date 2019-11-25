@@ -36,6 +36,7 @@ export default function Main({ advertises }) {
               <col className="content" />
               <col className="survey" />
               <col className="views" />
+              <col className="status" />
             </colgroup>
             <thead>
               <tr>
@@ -43,6 +44,7 @@ export default function Main({ advertises }) {
                 <th>content</th>
                 <th>survey</th>
                 <th>views</th>
+                <th>status</th>
               </tr>
             </thead>
             <tbody>
@@ -61,6 +63,7 @@ export default function Main({ advertises }) {
                       <p className="advertise-survey">{advertise.survey}</p>
                     </td>
                     <td>{advertise.views}</td>
+                    <td>{advertise.status}</td>
                   </tr>
                 ))}
             </tbody>

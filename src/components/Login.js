@@ -14,6 +14,7 @@ export default function Login({ setIsLoggedIn, setIsAdmin, history }) {
       name: e.target.name.value
     });
     console.log("data는:", data);
+    console.log(data.password);
     if (!data.result) {
       setLoginState("failed");
     } else {
@@ -26,7 +27,7 @@ export default function Login({ setIsLoggedIn, setIsAdmin, history }) {
       setIsLoggedIn(true);
       setLoginState("success");
     }
-    console.log("data2는:", data);
+    console.log("data는:", data);
   };
   return (
     <>
